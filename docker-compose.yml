@@ -1,0 +1,15 @@
+services:
+  fleet-server:
+    image: docker.elastic.co/beats/elastic-agent:8.15.1
+    container_name: dagent-fleet-server
+    environment:
+      - FLEET_SERVER_ENABLE=true
+      - FLEET_SERVER_ELASTICSEARCH_HOST=http://10.20.20.125:9200
+      - FLEET_SERVER_SERVICE_TOKEN=AAEAAWVsYXN0aWMvZmxlZXQtc2VydmVyL3Rva2VuLTE3MjgyODU3OTIwMjg6V2p3N0ctTTVUZEs0X0lVQURybGRHZw # Token yang diperoleh dari Kibana
+      - FLEET_SERVER_POLICY_ID=119a875e-706c-4641-8135-96a3e3f53ed0 # ID dari kebijakan Fleet Server
+      - KIBANA_HOST=http://10.20.20.125:5601 # URL Kibana
+      - KIBANA_USERNAME=elastic # Pengguna Kibana
+      - KIBANA_PASSWORD=bleIl5OJy64ZUF9SOk21 # Kata sandi Kibana (ubah sesuai kebutuhan)
+      - FLEET_INSECURE=true # Aktifkan komunikasi tidak aman (opsional)
+    ports:
+      - "8220:8220" # Map port 8220 dari container ke host
